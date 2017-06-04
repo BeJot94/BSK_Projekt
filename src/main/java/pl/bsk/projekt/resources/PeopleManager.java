@@ -228,12 +228,21 @@ public class PeopleManager {
                         @FormParam("haslo") String haslo,
                         @FormParam("wybraneRole") String wybraneRole) throws IOException, SQLException
     {
-        String[] listaRol = wybraneRole.split(",");
+        String[] listaRol;
+        boolean szprynglu=true;
+        if(wybraneRole.length()==0){
+            listaRol = wybraneRole.split(",");
+            szprynglu=false;
+        }
+        else{
+            listaRol=null;
+        }
         Connect();        
         Statement statement = connection.createStatement();
         statement.executeUpdate("UPDATE Użytkownik SET Login='" + login + "', Hasło='" +
                 haslo + "' WHERE ID = '" + IDKonta+"'");           
         
+        if(szprynglu){
         for(int i = 0; i < listaRol.length; i++){
             
             boolean isExist=false;
@@ -270,7 +279,7 @@ public class PeopleManager {
             }
             
         }
-        
+        }
         Disconnect();
         
         response.sendRedirect("../../../../admin/pages/people.html");

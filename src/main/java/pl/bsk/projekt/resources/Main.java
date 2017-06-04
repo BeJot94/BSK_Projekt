@@ -209,6 +209,12 @@ public class Main {
                     menu += "<li>" + 
                                 "<a href=\"kartoteka.html\"><i class=\"fa fa-table fa-fw\"></i> Przeglądaj kartotekę</a>" + 
                             "</li>";
+                    if(row.get("HistoriaLeczeniaDodawanie").toString().equals("true"))
+                    {
+                        menu += "<li>" + 
+                                    "<a href=\"addKartoteka.html?id=0\"><i class=\"fa fa-plus-square fa-fw\"></i> Nowa kartoteka</a>" + 
+                                "</li>";
+                    }
                 
                 menu += "</ul>" + 
                     "<!-- /.nav-second-level -->" + 
